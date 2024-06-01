@@ -1,2 +1,2 @@
-num^test_num:10;
-str^test_str:hello;
+num:test_num=10;
+str:test_str=hello;

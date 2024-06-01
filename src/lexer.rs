@@ -57,13 +57,13 @@ impl Lexer {
                     i += 1;
                     phrase = String::new();
                 }
-                ':' => {
+                '=' => {
                     current.tokens.push(Token::Var(phrase.clone()));
                     current.tokens.push(Token::Equal);
 
                     phrase = String::new();
                 }
-                '^' => {
+                ':' => {
                     current.tokens.push(Token::Type(match phrase.as_str() {
                         "num" => Type::Number,
                         "str" => Type::String,
