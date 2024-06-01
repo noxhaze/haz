@@ -1,10 +1,12 @@
 use std::{fs::File, io::Read};
 
 use crate::lexer::Lexer;
+use crate::parser::Parser;
 
 pub struct Config {
     pub file: File,
     pub lexer: Lexer,
+    pub parser: Parser,
 }
 
 impl Config {
@@ -16,6 +18,13 @@ impl Config {
         let mut lexer = Lexer::new(text);
         lexer.read();
 
-        Ok(Self { file, lexer })
+        let mut parser = Parser::new();
+        parser.parse_values(&lexer.statements);
+
+        Ok(Self {
+            file,
+            lexer,
+            parser,
+        })
     }
 }
