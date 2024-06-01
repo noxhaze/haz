@@ -5,6 +5,7 @@ use std::collections::hash_map::HashMap;
 pub enum Value {
     String(String),
     Number(i32),
+    Bool(bool),
 }
 
 pub struct Parser {
@@ -39,6 +40,11 @@ impl Parser {
                     var_def
                         .parse()
                         .expect("Failed to parse variable with type `Number` into i32"),
+                ),
+                Type::Bool => Value::Bool(
+                    var_def
+                        .parse()
+                        .expect("Failed to parse variable with type `Bool` into bool"),
                 ),
             };
 

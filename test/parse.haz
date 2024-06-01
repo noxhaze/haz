@@ -1,2 +1,3 @@
 num:test_num=10;
 str:test_str=hello;
+bool:test_bool=true;

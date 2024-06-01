@@ -4,6 +4,7 @@ use core::panic;
 pub enum Type {
     Number,
     String,
+    Bool,
 }
 
 #[derive(Debug, PartialEq)]
@@ -67,6 +68,7 @@ impl Lexer {
                     current.tokens.push(Token::Type(match phrase.as_str() {
                         "num" => Type::Number,
                         "str" => Type::String,
+                        "bool" => Type::Bool,
                         _ => panic!("Invalid type definition"),
                     }));
 

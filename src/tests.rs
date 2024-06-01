@@ -72,6 +72,7 @@ fn parse() {
     let vars: HashMap<String, Value> = HashMap::from([
         ("test_num".to_string(), Value::Number(10)),
         ("test_str".to_string(), Value::String(String::from("hello"))),
+        ("test_bool".to_string(), Value::Bool(true)),
     ]);
 
     assert_eq!(vars, config.parser.values);
