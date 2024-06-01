@@ -40,6 +40,8 @@ impl Lexer {
     }
 
     pub fn read(&mut self) {
+        self.text.retain(|c| *c != '\n');
+
         let mut i: usize = 0;
         let mut phrase: String = String::new();
 
