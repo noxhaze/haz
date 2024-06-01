@@ -1,12 +1,14 @@
-enum Token {
+#[derive(Debug, PartialEq)]
+pub enum Token {
     Equal(char),
     Eol(char),
     Value(String),
     Var(String),
 }
 
+#[derive(Debug)]
 pub struct Statement {
-    tokens: Vec<Token>,
+    pub tokens: Vec<Token>,
 }
 
 impl Statement {
@@ -16,8 +18,8 @@ impl Statement {
 }
 
 pub struct Lexer {
-    text: Vec<char>,
-    statements: Vec<Statement>,
+    pub text: Vec<char>,
+    pub statements: Vec<Statement>,
 }
 
 impl Lexer {
@@ -40,22 +42,18 @@ impl Lexer {
                     current.tokens.push(Token::Value(phrase.clone()));
                     current.tokens.push(Token::Eol(';'));
 
-                    Self::reset(&mut self.statements, &mut phrase, &mut i);
+                    self.statements.push(Statement::new());
+                    i += 1;
+                    phrase = String::new();
                 }
                 ':' => {
                     current.tokens.push(Token::Var(phrase.clone()));
                     current.tokens.push(Token::Equal(':'));
 
-                    Self::reset(&mut self.statements, &mut phrase, &mut i);
+                    phrase = String::new();
                 }
                 _ => phrase.push(*c),
             };
         }
-    }
-
-    fn reset(statements: &mut Vec<Statement>, phrase: &mut String, i: &mut usize) {
-        *phrase = String::new();
-        statements.push(Statement::new());
-        *i += 1;
     }
 }
