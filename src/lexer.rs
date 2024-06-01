@@ -1,6 +1,6 @@
 use core::panic;
 
-#[derive(Debug, PartialEq)]
+#[derive(Debug, PartialEq, Clone)]
 pub enum Type {
     Number,
     String,
@@ -74,5 +74,8 @@ impl Lexer {
                 _ => phrase.push(*c),
             };
         }
+
+        self.statements
+            .retain(|statement| !statement.tokens.is_empty());
     }
 }
