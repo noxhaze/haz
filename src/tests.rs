@@ -1,5 +1,5 @@
 use crate::config::Config;
-use crate::lexer::Token;
+use crate::lexer::{Token, Type};
 
 #[test]
 fn creation() {
@@ -24,6 +24,34 @@ fn read() {
 fn read_with_space() {
     let config = Config::new("test/read_with_space.haz").unwrap();
     let tokens = vec![
+        Token::Var(String::from("test_var")),
+        Token::Equal,
+        Token::Value(String::from("test_value")),
+        Token::Eol,
+    ];
+
+    assert_eq!(tokens, config.lexer.statements.get(0).unwrap().tokens);
+}
+
+#[test]
+fn read_types_number() {
+    let config = Config::new("test/read_types_number.haz").unwrap();
+    let tokens = vec![
+        Token::Type(Type::Number),
+        Token::Var(String::from("test_var")),
+        Token::Equal,
+        Token::Value(String::from("test_value")),
+        Token::Eol,
+    ];
+
+    assert_eq!(tokens, config.lexer.statements.get(0).unwrap().tokens);
+}
+
+#[test]
+fn read_types_string() {
+    let config = Config::new("test/read_types_string.haz").unwrap();
+    let tokens = vec![
+        Token::Type(Type::String),
         Token::Var(String::from("test_var")),
         Token::Equal,
         Token::Value(String::from("test_value")),
