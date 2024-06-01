@@ -1,7 +1,14 @@
 #[derive(Debug, PartialEq)]
+pub enum Type {
+    Number,
+    String,
+}
+
+#[derive(Debug, PartialEq)]
 pub enum Token {
-    Equal(char),
-    Eol(char),
+    Equal,
+    Eol,
+    Type(Type),
     Value(String),
     Var(String),
 }
@@ -40,7 +47,7 @@ impl Lexer {
             match c {
                 ';' => {
                     current.tokens.push(Token::Value(phrase.clone()));
-                    current.tokens.push(Token::Eol(';'));
+                    current.tokens.push(Token::Eol);
 
                     self.statements.push(Statement::new());
                     i += 1;
@@ -48,7 +55,7 @@ impl Lexer {
                 }
                 ':' => {
                     current.tokens.push(Token::Var(phrase.clone()));
-                    current.tokens.push(Token::Equal(':'));
+                    current.tokens.push(Token::Equal);
 
                     phrase = String::new();
                 }

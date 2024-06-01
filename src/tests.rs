@@ -12,9 +12,9 @@ fn read() {
     let config = Config::new("test/read.haz").unwrap();
     let tokens = vec![
         Token::Var(String::from("test_var")),
-        Token::Equal(':'),
+        Token::Equal,
         Token::Value(String::from("test_value")),
-        Token::Eol(';'),
+        Token::Eol,
     ];
 
     assert_eq!(tokens, config.lexer.statements.get(0).unwrap().tokens);
@@ -25,9 +25,9 @@ fn read_with_space() {
     let config = Config::new("test/read_with_space.haz").unwrap();
     let tokens = vec![
         Token::Var(String::from("test_var")),
-        Token::Equal(':'),
+        Token::Equal,
         Token::Value(String::from("test_value")),
-        Token::Eol(';'),
+        Token::Eol,
     ];
 
     assert_eq!(tokens, config.lexer.statements.get(0).unwrap().tokens);
