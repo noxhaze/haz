@@ -52,6 +52,7 @@ impl Lexer {
 
                     phrase = String::new();
                 }
+                ' ' => continue,
                 _ => phrase.push(*c),
             };
         }
