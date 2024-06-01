@@ -12,13 +12,13 @@ pub struct Statement {
 }
 
 impl Statement {
-    pub fn new() -> Self {
+    fn new() -> Self {
         Self { tokens: Vec::new() }
     }
 }
 
 pub struct Lexer {
-    pub text: Vec<char>,
+    text: Vec<char>,
     pub statements: Vec<Statement>,
 }
 

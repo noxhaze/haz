@@ -1,5 +1,5 @@
 #[cfg(test)]
 mod tests;
 
-mod config;
+pub mod config;
 mod lexer;
