@@ -2,5 +2,5 @@
 mod tests;
 
 pub mod config;
-mod lexer;
-mod parser;
+pub mod lexer;
+pub mod parser;
